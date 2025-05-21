@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIUTH - Advanced International University Teaching Hospital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for animations and transitions */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .animate-slide-left {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .nav-item.active {
+            border-bottom: 3px solid #3B82F6;
+            color: #3B82F6;
+            font-weight: bold;
+        }
+        
+        .carousel-item {
+            display: none;
+            transition: opacity 1s ease;
+        }
+        
+        .carousel-item.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .floating-image {
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid #3B82F6;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <div class="text-blue-600 font-bold text-2xl flex items-center">
+                        <i class="fas fa-hospital-alt mr-2"></i>
+                        AIUTH
+                    </div>
+                    <span class="ml-2 text-sm text-gray-600 hidden md:block">Advanced International University Teaching Hospital</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="nav-item active" data-page="home">Home</a>
+                    <a href="#" class="nav-item" data-page="services">Services</a>
+                    <a href="#" class="nav-item" data-page="equipment">Equipment</a>
+                    <a href="#" class="nav-item" data-page="appointment">Doctors & Appointment</a>
+                    <a href="#" class="nav-item" data-page="contact">Contact</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-blue-600">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="flex flex-col p-4 space-y-3">
+                <a href="#" class="nav-item active" data-page="home">Home</a>
+                <a href="#" class="nav-item" data-page="services">Services</a>
+                <a href="#" class="nav-item" data-page="equipment">Equipment</a>
+                <a href="#" class="nav-item" data-page="appointment">Doctors & Appointment</a>
+                <a href="#" class="nav-item" data-page="contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active pt-20">
+        <!-- Hero Section -->
+        <section class="relative bg-blue-700 text-white">
+            <div class="container mx-auto px-4 py-20 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="animate-slide-left">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Excellence in Healthcare Education and Services</h1>
+                    <p class="text-xl mb-8"> Avance International University Teaching Hospital in Nabweru Nasana provides world-class medical education and healthcare services to our community.</p>
+                    <div class="flex space-x-4">
+                        <button class="bg-white text-blue-700 px-6 py-3 rounded-lg font-bold hover:bg-blue-100 transition">Learn More</button>
+                        <button class="border-2 border-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-blue-700 transition">Contact Us</button>
+                    </div>
+                </div>
+                <div class="animate-fade-in">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                         alt="Modern Hospital" 
+                         class="rounded-lg shadow-2xl floating-image">
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent"></div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Our Impact in Numbers</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                    <div class="bg-white p-8 rounded-lg shadow-lg animate-fade-in" style="animation-delay: 0.1s">
+                        <div class="text-5xl font-bold text-blue-600 mb-2">500+</div>
+                        <div class="text-gray-600">Medical Students</div>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg animate-fade-in" style="animation-delay: 0.3s">
+                        <div class="text-5xl font-bold text-blue-600 mb-2">100+</div>
+                        <div class="text-gray-600">Specialist Doctors</div>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg animate-fade-in" style="animation-delay: 0.5s">
+                        <div class="text-5xl font-bold text-blue-600 mb-2">24/7</div>
+                        <div class="text-gray-600">Emergency Services</div>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg animate-fade-in" style="animation-delay: 0.7s">
+                        <div class="text-5xl font-bold text-blue-600 mb-2">10+</div>
+                        <div class="text-gray-600">Research Centers</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="animate-slide-left">
+                        <div class="text-blue-600 font-bold mb-4">ABOUT US</div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">A Center of Excellence in Medical Education and Healthcare</h2>
+                        <p class="text-gray-600 mb-6">Founded in 2017, the Advanced International University Teaching Hospital has grown to become a premier institution for medical education and healthcare services in Nabweru Nasana and beyond.</p>
+                        <p class="text-gray-600 mb-6">Our mission is to train the next generation of healthcare professionals while providing compassionate, cutting-edge care to our community.</p>
+                        <button class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">Our History</button>
+                    </div>
+                    <div class="relative animate-fade-in">
+                        <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Doctors in meeting" 
+                             class="rounded-lg shadow-xl w-full">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg w-2/3">
+                            <div class="font-bold text-blue-600 mb-1">Since 2017</div>
+                            <div class="text-gray-700">Providing excellent healthcare education and services</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Carousel -->
+        <section class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Our Facilities</h2>
+                <div class="relative max-w-4xl mx-auto">
+                    <div class="carousel-item active">
+                        <img src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
+                             alt="Modern Hospital Ward" 
+                             class="rounded-lg w-full h-96 object-cover">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Hospital Laboratory" 
+                             class="rounded-lg w-full h-96 object-cover">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1585435557343-3b92e57c6d2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Hospital Auditorium" 
+                             class="rounded-lg w-full h-96 object-cover">
+                    </div>
+                    <div class="flex justify-center mt-6 space-x-2">
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-gray-300 active:bg-blue-600" data-index="0"></button>
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-gray-300 active:bg-blue-600" data-index="1"></button>
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-gray-300 active:bg-blue-600" data-index="2"></button>
+                    </div>
+                    <button class="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">What People Say About Us</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"The care I received at AIUTH was exceptional. The doctors were knowledgeable and took time to explain everything to me."</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Patient" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <div class="font-bold">Sarah kemigisha.</div>
+                                <div class="text-sm text-gray-500">Former Patient</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"As a medical student, the hands-on experience at AIUTH is unparalleled. The faculty is dedicated to our success."</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Student" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <div class="font-bold">John Magara.</div>
+                                <div class="text-sm text-gray-500">Medical Student</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Working at AIUTH has been a rewarding experience. The commitment to both patient care and medical education is inspiring."</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Doctor" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <div class="font-bold">Dr. Amina Nakuraga.</div>
+                                <div class="text-sm text-gray-500">Pediatric Specialist</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Banner -->
+        <section class="py-16 bg-red-600 text-white">
+            <div class="container mx-auto px-4 text-center">
+                <div class="flex flex-col md:flex-row justify-center items-center">
+                    <div class="flex items-center justify-center mb-4 md:mb-0 md:mr-8">
+                        <i class="fas fa-phone-alt text-4xl mr-4 animate-pulse"></i>
+                        <div>
+                            <div class="font-bold text-xl">Emergency Hotline</div>
+                            <div class="text-3xl font-bold">+256 700 123 456</div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xl mb-4">Available 24 hours, 7 days a week for emergencies</p>
+                        <button class="bg-white text-red-600 px-6 py-2 rounded-lg font-bold hover:bg-red-100 transition">
+                            <i class="fas fa-ambulance mr-2"></i> Request Emergency
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page pt-20">
+        <section class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Our Medical Services</h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Comprehensive healthcare services tailored to meet your needs with compassion and expertise.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Emergency Care" 
+                                 class="w-full h-48 object-cover">
+                            <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                                24/7
+                            </div>
+                        </div>
+                        <div classp="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Emergency Care</h3>
+                            <p class="text-gray-600 mb-4">Immediate medical attention for life-threatening conditions with our expert emergency team.</p>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-blue-600 font-bold">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
+                                <div class="text-blue-600">
+                                    <i class="fas fa-phone-alt mr-1"></i> +256 700 123 456
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Card 2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Cardiology" 
+                                 class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Cardiology</h3>
+                            <p class="text-gray-600 mb-4">Comprehensive heart care including diagnostics, treatment, and preventive cardiology services.</p>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-blue-600 font-bold">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
+                                <button class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold hover:bg-blue-700 transition">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Card 3 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Pediatrics" 
+                                 class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Pediatrics</h3>
+                            <p class="text-gray-600 mb-4">Specialized healthcare for infants, children and adolescents with child-friendly facilities.</p>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-blue-600 font-bold">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
+                                <button class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold hover:bg-blue-700 transition">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Card 4 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Radiology" 
+                                 class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Radiology & Imaging</h3>
+                            <p class="text-gray-600 mb-4">State-of-the-art diagnostic imaging including X-ray, CT, MRI, ultrasound and more.</p>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-blue-600 font-bold">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
+                                <button class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold hover:bg-blue-700 transition">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Card 5 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" 
+                                 alt="Surgery" 
+                                 class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Surgical Services</h3>
+                            <p class="text-gray-600 mb-4">Advanced surgical procedures performed by highly skilled surgeons in modern operating theaters.</p>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-blue-600 font-bold">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
+                                <button class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold hover:bg-blue-700 transition">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Card 6 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Nutrition" 
+                                 class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Nutrition & Wellness</h3>
+                            <p class="text-gray-600 mb-4">Comprehensive dietary and lifestyle counseling for optimal health and chronic disease management.</p>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-blue-600 font-bold">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
+                                <button class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold hover:bg-blue-700 transition">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <button class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+                        View All Services <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Special Programs Section -->
+        <section class="py-16 bg-blue-700 text-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12">Special Programs</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white bg-opacity-10 p-8 rounded-lg hover:bg-opacity-20 transition">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Community Health Outreach</h3>
+                        <p class="mb-4">Free health screenings and education programs in underserved communities throughout Nabweru Nasana.</p>
+                        <a href="#" class="font-bold hover:underline">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                    <div class="bg-white bg-opacity-10 p-8 rounded-lg hover:bg-opacity-20 transition">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Maternal & Child Health</h3>
+                        <p class="mb-4">Comprehensive prenatal, delivery, and postnatal care with specialized neonatal services for high-risk pregnancies.</p>
+                        <a href="#" class="font-bold hover:underline">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                    <div class="bg-white bg-opacity-10 p-8 rounded-lg hover:bg-opacity-20 transition">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Chronic Disease Management</h3>
+                        <p class="mb-4">Specialized programs for diabetes, hypertension, and other chronic conditions with multidisciplinary care teams.</p>
+                        <a href="#" class="font-bold hover:underline">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Equipment Page -->
+    <div id="equipment" class="page pt-20">
+        <section class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Our Advanced Medical Equipment</h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Cutting-edge technology for accurate diagnostics and effective treatments.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="animate-slide-left">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">World-Class Facilities</h2>
+                        <p class="text-gray-600 mb-6">At AIUTH, we invest in the latest medical technology to ensure our patients receive the highest standard of care. Our equipment is regularly updated and maintained by our team of biomedical engineers.</p>
+                        <p class="text-gray-600 mb-6">From diagnostic imaging to surgical robotics, our facilities rival the best hospitals in the region. We combine advanced technology with our expert medical staff to achieve exceptional outcomes.</p>
+                        <div class="flex space-x-4">
+                            <button class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+                                Virtual Tour
+                            </button>
+                            <button class="border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-blue-50 transition">
+                                Equipment List
+                            </button>
+                        </div>
+                    </div>
+                    <div class="animate-fade-in">
+                        <img src="https://images.unsplash.com/photo-1581595219342-99bd276af882?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="MRI Machine" 
+                             class="rounded-lg shadow-xl w-full">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Equipment Card 1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="3T MRI" 
+                             class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">3T Magnetic Resonance Imaging (MRI)</h3>
+                            <p class="text-gray-600 mb-4">High-resolution imaging for detailed visualization of soft tissues with reduced scan times.</p>
+                            <div class="text-blue-600 font-bold">
+                                <i class="fas fa-info-circle mr-2"></i> Used for: Neurology, Orthopedics, Oncology
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Equipment Card 2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <img src="https://images.unsplash.com/photo-1581595217345-aee29a08041a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="CT Scanner" 
+                             class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">128-Slice CT Scanner</h3>
+                            <p class="text-gray-600 mb-4">Advanced computed tomography for high-speed, low-dose imaging with exceptional detail.</p>
+                            <div class="text-blue-600 font-bold">
+                                <i class="fas fa-info-circle mr-2"></i> Used for: Trauma, Cardiology, Pulmonary
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Equipment Card 3 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <img src="https://images.unsplash.com/photo-1580738338578-925b05e3d908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Robotic Surgery" 
+                             class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Robotic Surgical System</h3>
+                            <p class="text-gray-600 mb-4">Precision surgical robotics for minimally invasive procedures with enhanced dexterity.</p>
+                            <div class="text-blue-600 font-bold">
+                                <i class="fas fa-info-circle mr-2"></i> Used for: Urology, Gynecology, General Surgery
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Equipment Card 4 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <img src="https://images.unsplash.com/photo-1631815515843-8d0222fc7aa1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Linear Accelerator" 
+                             class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Linear Accelerator</h3>
+                            <p class="text-gray-600 mb-4">Advanced radiation therapy delivering precisely targeted treatment to cancer cells.</p>
+                            <div class="text-blue-600 font-bold">
+                                <i class="fas fa-info-circle mr-2"></i> Used for: Oncology, Radiation Therapy
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Equipment Card 5 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <img src="https://images.unsplash.com/photo-1581595217101-dc2f7f38f5d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Echocardiogram" 
+                             class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">4D Echocardiography</h3>
+                            <p class="text-gray-600 mb-4">Real-time cardiac imaging with volumetric assessment for comprehensive heart evaluation.</p>
+                            <div class="text-blue-600 font-bold">
+                                <i class="fas fa-info-circle mr-2"></i> Used for: Cardiology, Pediatric Cardiology
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Equipment Card 6 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <img src="https://images.unsplash.com/photo-1581595219343-0e4d6f43d648?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Hybrid OR" 
+                             class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Hybrid Operating Room</h3>
+                            <p class="text-gray-600 mb-4">Combining advanced imaging with surgical capabilities for complex procedures in one space.</p>
+                            <div class="text-blue-600 font-bold">
+                                <i class="fas fa-info-circle mr-2"></i> Used for: Vascular Surgery, Neurosurgery, Cardiothoracic
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Biomedical Engineering Section -->
+                <div class="mt-16 bg-white rounded-lg shadow-xl p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Biomedical Engineering Department</h2>
+                            <p class="text-gray-600 mb-4">Our dedicated team of biomedical engineers ensures all equipment is maintained to the highest standards and our staff is properly trained on its use.</p>
+                            <p class="text-gray-600 mb-6">We also collaborate with manufacturers and universities on research initiatives to develop new medical technologies.</p>
+                            <button class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+                                Contact Our Biomedical Team
+                            </button>
+                        </div>
+                        <div class="animate-fade-in">
+                            <img src="https://images.unsplash.com/photo-1629909613657-0fa41863a529?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Biomedical Engineers" 
+                                 class="rounded-lg w-full">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Doctors & Appointment Page -->
+    <div id="appointment" class="page pt-20">
+        <section class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Our Medical Specialists</h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Meet our team of highly qualified doctors committed to your health and well-being.</p>
+                </div>
+                
+                <!-- Doctor Filter -->
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Search by Name</label>
+                            <input type="text" placeholder="Doctor's name" class="w-full p-3 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Specialty</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg">
+                                <option value="">All Specialties</option>
+                                <option value="cardiology">Cardiology</option>
+                                <option value="pediatrics">Pediatrics</option>
+                                <option value="neurology">Neurology</option>
+                                <option value="orthopedics">Orthopedics</option>
+                                <option value="oncology">Oncology</option>
+                                <option value="surgery">General Surgery</option>
+                                <option value="obgyn">Obstetrics & Gynecology</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Availability</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg">
+                                <option value="">All Days</option>
+                                <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Doctors Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Doctor Card 1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <div class="relative">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" 
+                                 alt="Dr. Sarah Johnson" 
+                                 class="w-full h-64 object-cover">
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                                Available Today
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-1 text-gray-800">Dr. Sarah Johnson</h3>
+                            <div class="text-blue-600 mb-3">Cardiologist</div>
+                            <div class="flex items-center text-gray-600 mb-3">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-bold">4.9</span>
+                                <span class="text-gray-500 ml-2">(128 reviews)</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Specializes in non-invasive cardiology and preventive heart care.</p>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700 transition doctor-book-btn" data-doctor-id="dr-sarah-johnson">
+                                    Book Appointment
+                                </button>
+                                <a href="#" class="text-blue-600 hover:underline">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Doctor Card 2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <div class="relative">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+                                 alt="Dr. Michael Chen" 
+                                 class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-1 text-gray-800">Dr. Michael karuga</h3>
+                            <div class="text-blue-600 mb-3">Pediatrician</div>
+                            <div class="flex items-center text-gray-600 mb-3">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-bold">4.8</span>
+                                <span class="text-gray-500 ml-2">(96 reviews)</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Specializes in pediatric care and childhood development.</p>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700 transition doctor-book-btn" data-doctor-id="dr-michael-chen">
+                                    Book Appointment
+                                </button>
+                                <a href="#" class="text-blue-600 hover:underline">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Doctor Card 3 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <div class="relative">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" 
+                                 alt="Dr. David Rodriguez" 
+                                 class="w-full h-64 object-cover">
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                                Available Tomorrow
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-1 text-gray-800">Dr. David Rodriguez</h3>
+                            <div class="text-blue-600 mb-3">Neurologist</div>
+                            <div class="flex items-center text-gray-600 mb-3">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-bold">4.7</span>
+                                <span class="text-gray-500 ml-2">(84 reviews)</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Expert in neurological disorders including epilepsy and migraines.</p>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700 transition doctor-book-btn" data-doctor-id="dr-david-rodriguez">
+                                    Book Appointment
+                                </button>
+                                <a href="#" class="text-blue-600 hover:underline">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Doctor Card 4 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <div class="relative">
+                            <img src="https://randomuser.me/api/portraits/women/42.jpg" 
+                                 alt="Dr. Amina Nalwoga" 
+                                 class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-1 text-gray-800">Dr. Amina Nalwoga</h3>
+                            <div class="text-blue-600 mb-3">Obstetrician/Gynecologist</div>
+                            <div class="flex items-center text-gray-600 mb-3">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-bold">4.9</span>
+                                <span class="text-gray-500 ml-2">(112 reviews)</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Specializes in women's health and high-risk pregnancies.</p>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700 transition doctor-book-btn" data-doctor-id="dr-amina-nalwoga">
+                                    Book Appointment
+                                </button>
+                                <a href="#" class="text-blue-600 hover:underline">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Doctor Card 5 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <div class="relative">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" 
+                                 alt="Dr. Robert Mugisha" 
+                                 class="w-full h-64 object-cover">
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                                Available Today
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-1 text-gray-800">Dr. Robert Mugisha</h3>
+                            <div class="text-blue-600 mb-3">Orthopedic Surgeon</div>
+                            <div class="flex items-center text-gray-600 mb-3">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-bold">4.8</span>
+                                <span class="text-gray-500 ml-2">(76 reviews)</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Specializes in joint replacements and sports medicine.</p>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700 transition doctor-book-btn" data-doctor-id="dr-robert-mugisha">
+                                    Book Appointment
+                                </button>
+                                <a href="#" class="text-blue-600 hover:underline">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Doctor Card 6 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <div class="relative">
+                            <img src="https://randomuser.me/api/portraits/women/28.jpg" 
+                                 alt="Dr. Elizabeth Kato" 
+                                 class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-1 text-gray-800">Dr. Elizabeth Kato</h3>
+                            <div class="text-blue-600 mb-3">Oncologist</div>
+                            <div class="flex items-center text-gray-600 mb-3">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-bold">4.9</span>
+                                <span class="text-gray-500 ml-2">(105 reviews)</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Specializes in medical oncology and cancer treatment.</p>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700 transition doctor-book-btn" data-doctor-id="dr-elizabeth-kato">
+                                    Book Appointment
+                                </button>
+                                <a href="#" class="text-blue-600 hover:underline">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <button class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+                        View All Doctors <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Appointment Form Modal -->
+        <div id="appointment-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-2xl font-bold text-gray-800">Book Appointment</h3>
+                        <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <form id="appointment-form" class="space-y-4">
+                        <input type="hidden" id="selected-doctor-id">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="first-name" class="block text-gray-700 mb-1">First Name*</label>
+                                <input type="text" id="first-name" required class="w-full p-3 border border-gray-300 rounded-lg">
+                            </div>
+                            <div>
+                                <label for="last-name" class="block text-gray-700 mb-1">Last Name*</label>
+                                <input type="text" id="last-name" required class="w-full p-3 border border-gray-300 rounded-lg">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-1">Email*</label>
+                                <input type="email" id="email" required class="w-full p-3 border border-gray-300 rounded-lg">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-gray-700 mb-1">Phone Number*</label>
+                                <input type="tel" id="phone" required class="w-full p-3 border border-gray-300 rounded-lg">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="dob" class="block text-gray-700 mb-1">Date of Birth*</label>
+                            <input type="date" id="dob" required class="w-full p-3 border border-gray-300 rounded-lg">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-1">Gender*</label>
+                            <div class="flex space-x-4">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="gender" value="male" required class="mr-2">
+                                    <span>Male</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="gender" value="female" class="mr-2">
+                                    <span>Female</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="gender" value="other" class="mr-2">
+                                    <span>Other</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="doctor" class="block text-gray-700 mb-1">Doctor*</label>
+                            <select id="doctor" required class="w-full p-3 border border-gray-300 rounded-lg">
+                                <option value="dr-sarah-johnson">Dr. Sarah Johnson - Cardiologist</option>
+                                <option value="dr-michael-chen">Dr. Michael Chen - Pediatrician</option>
+                                <option value="dr-david-rodriguez">Dr. David Rodriguez - Neurologist</option>
+                                <option value="dr-amina-nalwoga">Dr. Amina Nalwoga - OB/GYN</option>
+                                <option value="dr-robert-mugisha">Dr. Robert Mugisha - Orthopedic Surgeon</option>
+                                <option value="dr-elizabeth-kato">Dr. Elizabeth Kato - Oncologist</option>
+                            </select>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="appointment-date" class="block text-gray-700 mb-1">Appointment Date*</label>
+                                <input type="date" id="appointment-date" required class="w-full p-3 border border-gray-300 rounded-lg">
+                            </div>
+                            <div>
+                                <label for="appointment-time" class="block text-gray-700 mb-1">Preferred Time*</label>
+                                <select id="appointment-time" required class="w-full p-3 border border-gray-300 rounded-lg">
+                                    <option value="">Select time</option>
+                                    <option value="08:00 AM">08:00 AM</option>
+                                    <option value="09:00 AM">09:00 AM</option>
+                                    <option value="10:00 AM">10:00 AM</option>
+                                    <option value="11:00 AM">11:00 AM</option>
+                                    <option value="12:00 PM">12:00 PM</option>
+                                    <option value="01:00 PM">01:00 PM</option>
+                                    <option value="02:00 PM">02:00 PM</option>
+                                    <option value="03:00 PM">03:00 PM</option>
+                                    <option value="04:00 PM">04:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="reason" class="block text-gray-700 mb-1">Reason for Visit*</label>
+                            <textarea id="reason" required class="w-full p-3 border border-gray-300 rounded-lg h-24"></textarea>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <input type="checkbox" id="agree-terms" required class="mr-2">
+                            <label for="agree-terms" class="text-gray-700">I agree to the <a href="#" class="text-blue-600 hover:underline">terms and conditions</a> and <a href="#" class="text-blue-600 hover:underline">privacy policy</a>*</label>
+                        </div>
+                        
+                        <div>
+                            <button type="submit" id="submit-appointment" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition flex items-center justify-center">
+                                <span id="submit-text">Submit Appointment</span>
+                                <div id="loading-spinner" class="ml-2 hidden loading-spinner"></div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Appointment Confirmation Modal -->
+        <div id="confirmation-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 text-center">
+                <div class="text-green-500 text-5xl mb-4">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Appointment Confirmed!</h3>
+                <p class="text-gray-600 mb-6">Your appointment has been successfully booked. A confirmation has been sent to your email.</p>
+                <div class="bg-gray-100 p-4 rounded-lg mb-6 text-left">
+                    <div class="font-bold mb-2">Appointment Details:</div>
+                    <div id="confirmation-details" class="text-gray-700"></div>
+                </div>
+                <button id="close-confirmation" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+                    Done
+                </button>
+            </div>
+        </div>
+        
+        <!-- Walk-In Section -->
+        <section class="py-16 bg-blue-700 text-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6">Walk-In Appointments</h2>
+                        <p class="text-xl mb-6">Can't wait for a scheduled appointment? We accept walk-ins during our regular hours on a first-come, first-served basis.</p>
+                        <div class="mb-6">
+                            <div class="font-bold mb-2">Walk-In Hours:</div>
+                            <div class="space-y-1">
+                                <div>Monday - Friday: 8:00 AM - 4:00 PM</div>
+                                <div>Saturday: 9:00 AM - 2:00 PM</div>
+                                <div>Sunday: Emergency Only</div>
+                            </div>
+                        </div>
+                        <button class="bg-white text-blue-700 px-8 py-3 rounded-lg font-bold hover:bg-blue-100 transition">
+                            <i class="fas fa-directions mr-2"></i> Get Directions
+                        </button>
+                    </div>
+                    <div class="bg-white bg-opacity-10 p-8 rounded-lg border border-white border-opacity-30">
+                        <h3 class="text-2xl font-bold mb-4">Wait Time Estimates</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>General Medicine</span>
+                                    <span>30-45 min</span>
+                                </div>
+                                <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                    <div class="bg-yellow-400 h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>Pediatrics</span>
+                                    <span>45-60 min</span>
+                                </div>
+                                <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                    <div class="bg-red-400 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>Urgent Care</span>
+                                    <span>15-30 min</span>
+                                </div>
+                                <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                    <div class="bg-green-400 h-2 rounded-full" style="width: 50%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-sm text-white text-opacity-80">
+                            *Estimated wait times are approximate and may vary depending on patient volume.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page pt-20">
+        <section class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Contact Us</h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">We're here to help. Reach out to us with any questions or concerns.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="animate-slide-left">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Get in Touch</h2>
+                        <p class="text-gray-600 mb-6">At AIUTH, we value your questions, feedback, and concerns. Our team is ready to assist you with any inquiries you may have about our services, appointments, or any other matter.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="text-blue-600 mt-1 mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Our Location</h4>
+                                    <p class="text-gray-600">Plot 25, Nabweru Nasana Road<br>Avance International University Teaching Hospital<br>Nabweru, Uganda</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-blue-600 mt-1 mr-4">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Phone Numbers</h4>
+                                    <p class="text-gray-600">
+                                        General Inquiries: +256 700 123 456<br>
+                                        Appointments: +256 700 123 457<br>
+                                        Emergency: +256 700 123 999
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-blue-600 mt-1 mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Email</h4>
+                                    <p class="text-gray-600">
+                                        General: info@aiuth.ac.ug<br>
+                                        Appointments: appointments@aiuth.ac.ug<br>
+                                        Emergency: emergency@aiuth.ac.ug
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-blue-600 mt-1 mr-4">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Hours of Operation</h4>
+                                    <p class="text-gray-600">
+                                        Monday - Friday: 8:00 AM - 8:00 PM<br>
+                                        Saturday: 9:00 AM - 6:00 PM<br>
+                                        Sunday: 9:00 AM - 4:00 PM<br>
+                                        Emergency Services: 24/7
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg p-8 animate-fade-in">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h3>
+                        <form id="contact-form" class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="contact-name" class="block text-gray-700 mb-1">Name*</label>
+                                    <input type="text" id="contact-name" required class="w-full p-3 border border-gray-300 rounded-lg">
+                                </div>
+                                <div>
+                                    <label for="contact-email" class="block text-gray-700 mb-1">Email*</label>
+                                    <input type="email" id="contact-email" required class="w-full p-3 border border-gray-300 rounded-lg">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="contact-phone" class="block text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" id="contact-phone" class="w-full p-3 border border-gray-300 rounded-lg">
+                            </div>
+                            
+                            <div>
+                                <label for="contact-subject" class="block text-gray-700 mb-1">Subject*</label>
+                                <select id="contact-subject" required class="w-full p-3 border border-gray-300 rounded-lg">
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="appointment">Appointment Question</option>
+                                    <option value="billing">Billing Inquiry</option>
+                                    <option value="feedback">Feedback/Suggestion</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="contact-message" class="block text-gray-700 mb-1">Message*</label>
+                                <textarea id="contact-message" required class="w-full p-3 border border-gray-300 rounded-lg h-32"></textarea>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <input type="checkbox" id="contact-agree" required class="mr-2">
+                                <label for="contact-agree" class="text-gray-700">I agree to the <a href="#" class="text-blue-600 hover:underline">privacy policy</a>*</label>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Map -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-96 w-full" id="map">
+                        <!-- This will be populated with a map via JavaScript -->
+                        <div class="h-full w-full bg-gray-200 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-map-marker-alt text-4xl text-blue-600 mb-2"></i>
+                                <div class="text-gray-600">Loading map...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-1">Avanced International University Teaching Hospital</h4>
+                            <p class="text-gray-600">Plot 25, Nabweru Nasana Road, Nabweru, Uganda</p>
+                        </div>
+                        <button class="mt-4 md:mt-0 bg-blue-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+                            <i class="fas fa-directions mr-2"></i> Get Directions
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="text-2xl font-bold flex items-center mb-4">
+                        <i class="fas fa-hospital-alt mr-2 text-blue-400"></i> AIUTH
+                    </div>
+                    <p class="text-gray-400 mb-4">Avance International University Teaching Hospital - Providing exceptional healthcare and medical education since 2005.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Doctors</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Appointments</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Emergency Care</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Cardiology</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Pediatrics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Surgery</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Diagnostics</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for health tips, news and updates.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg text-gray-900 w-full">
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-400 mb-4 md:mb-0">
+                    &copy; 2023 Advanced International University Teaching Hospital. All rights reserved.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Database Simulation -->
+    <script>
+        // Simulated database for appointments
+        const appointmentsDB = {
+            appointments: [],
+            
+            addAppointment: function(appointment) {
+                appointment.id = this.appointments.length + 1;
+                appointment.status = 'pending';
+                appointment.createdAt = new Date().toISOString();
+                this.appointments.push(appointment);
+                return appointment;
+            },
+            
+            getAllAppointments: function() {
+                return this.appointments;
+            },
+            
+            getAppointmentById: function(id) {
+                return this.appointments.find(app => app.id === id);
+            }
+        };
+
+        // Main app functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Page navigation
+            const navItems = document.querySelectorAll('.nav-item');
+            const pages = document.querySelectorAll('.page');
+            
+            function showPage(pageId) {
+                // Hide all pages
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show selected page
+                document.getElementById(pageId).classList.add('active');
+                
+                // Update active nav item
+                navItems.forEach(item => {
+                    if (item.dataset.page === pageId) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+                
+                // If it's the contact page, initialize the map (simulated)
+                if (pageId === 'contact') {
+                    setTimeout(() => {
+                        const mapElement = document.getElementById('map');
+                        if (mapElement) {
+                            mapElement.innerHTML = `
+                                <div class="h-full w-full bg-blue-50 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <i class="fas fa-map-marker-alt text-4xl text-red-600 mb-2"></i>
+                                        <div class="text-xl font-bold text-gray-800">AIUTH Location</div>
+                                        <div class="text-gray-600">Plot 25, Nabweru Nasana Road</div>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    }, 500);
+                }
+            }
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showPage(this.dataset.page);
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
+            
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-button').addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+            
+            // Carousel functionality
+            let currentSlide = 0;
+            const carouselItems = document.querySelectorAll('.carousel-item');
+            const carouselDots = document.querySelectorAll('.carousel-dot');
+            
+            function showSlide(index) {
+                carouselItems.forEach(item => item.classList.remove('active'));
+                carouselDots.forEach(dot => dot.classList.remove('active'));
+                
+                carouselItems[index].classList.add('active');
+                carouselDots[index].classList.add('active');
+                currentSlide = index;
+            }
+            
+            // Auto-advance carousel
+            let carouselInterval = setInterval(() => {
+                let nextSlide = (currentSlide + 1) % carouselItems.length;
+                showSlide(nextSlide);
+            }, 5000);
+            
+            // Manual controls
+            document.querySelector('.carousel-prev').addEventListener('click', function() {
+                clearInterval(carouselInterval);
+                let prevSlide = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
+                showSlide(prevSlide);
+            });
+            
+            document.querySelector('.carousel-next').addEventListener('click', function() {
+                clearInterval(carouselInterval);
+                let nextSlide = (currentSlide + 1) % carouselItems.length;
+                showSlide(nextSlide);
+            });
+            
+            carouselDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    clearInterval(carouselInterval);
+                    showSlide(parseInt(this.dataset.index));
+                });
+            });
+            
+            // Appointment modal functionality
+            const appointmentModal = document.getElementById('appointment-modal');
+            const confirmationModal = document.getElementById('confirmation-modal');
+            const doctorBookButtons = document.querySelectorAll('.doctor-book-btn');
+            
+            doctorBookButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const doctorId = this.dataset.doctorId;
+                    document.getElementById('selected-doctor-id').value = doctorId;
+                    
+                    // Pre-select the doctor in the dropdown
+                    const doctorSelect = document.getElementById('doctor');
+                    for (let i = 0; i < doctorSelect.options.length; i++) {
+                        if (doctorSelect.options[i].value === doctorId) {
+                            doctorSelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+                    
+                    appointmentModal.classList.remove('hidden');
+                });
+            });
+            
+            document.getElementById('close-modal').addEventListener('click', function() {
+                appointmentModal.classList.add('hidden');
+            });
+            
+            document.getElementById('close-confirmation').addEventListener('click', function() {
+                confirmationModal.classList.add('hidden');
+            });
+            
+            // Form submission
+            document.getElementById('appointment-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                const submitBtn = document.getElementById('submit-appointment');
+                const submitText = document.getElementById('submit-text');
+                const loadingSpinner = document.getElementById('loading-spinner');
+                
+                submitText.textContent = 'Processing...';
+                loadingSpinner.classList.remove('hidden');
+                
+                // Simulate form processing
+                setTimeout(() => {
+                    // Get form data
+                    const formData = {
+                        firstName: document.getElementById('first-name').value,
+                        lastName: document.getElementById('last-name').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        dob: document.getElementById('dob').value,
+                        gender: document.querySelector('input[name="gender"]:checked').value,
+                        doctor: document.getElementById('doctor').value,
+                        date: document.getElementById('appointment-date').value,
+                        time: document.getElementById('appointment-time').value,
+                        reason: document.getElementById('reason').value
+                    };
+                    
+                    // Add to "database"
+                    const appointment = appointmentsDB.addAppointment(formData);
+                    
+                    // Show confirmation details
+                    const confirmationDetails = document.getElementById('confirmation-details');
+                    confirmationDetails.innerHTML = `
+                        <div><span class="font-semibold">Date:</span> ${new Date(appointment.date).toLocaleDateString()} ${appointment.time}</div>
+                        <div><span class="font-semibold">Doctor:</span> ${document.getElementById('doctor').options[document.getElementById('doctor').selectedIndex].text}</div>
+                        <div><span class="font-semibold">Patient:</span> ${appointment.firstName} ${appointment.lastName}</div>
+                        <div><span class="font-semibold">Reference #:</span> AIUTH-${appointment.id.toString().padStart(4, '0')}</div>
+                    `;
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Hide appointment modal
+                    appointmentModal.classList.add('hidden');
+                    
+                    // Show confirmation modal
+                    confirmationModal.classList.remove('hidden');
+                    
+                    // Reset button
+                    submitText.textContent = 'Submit Appointment';
+                    loadingSpinner.classList.add('hidden');
+                }, 1500);
+            });
+            
+            // Contact form submission
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulate form submission
+                alert('Thank you for your message! We will get back to you shortly.');
+                this.reset();
+            });
+            
+            // Initialize with home page
+            showPage('home');
+            
+            // Add animation classes on scroll
+            function checkScroll() {
+                const elements = document.querySelectorAll('.animate-scroll');
+                elements.forEach(element => {
+                    if (isElementInViewport(element)) {
+                        element.classList.add('animate-fade-in');
+                    }
+                });
+            }
+            
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.bottom >= 0
+                );
+            }
+            
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // Initial check
+        });
+    </script>
+</body>
+</html>
